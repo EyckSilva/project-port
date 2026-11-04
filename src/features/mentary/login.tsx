@@ -13,7 +13,9 @@ import {
   ShieldCheck,
   Users,
   Check,
+  ClipboardCheck,
   GraduationCap,
+  Network,
   Presentation,
   type LucideIcon,
 } from "lucide-react";
@@ -27,27 +29,13 @@ import { MentaryMark, MentaryOrb } from "./mentary-orb";
 type LoginRole = { value: Profile; label: string; scope: string; icon: LucideIcon };
 
 export const loginRoles: LoginRole[] = [
-  {
-    value: "Estudante",
-    label: "Sou estudante",
-    scope: "Entre com o seu código de acesso",
-    icon: GraduationCap,
-  },
-  {
-    value: "Professora",
-    label: "Sou professor(a)",
-    scope: "Turmas, questões e simulados",
-    icon: Presentation,
-  },
-  {
-    value: "Gestor Escolar",
-    label: "Sou gestor(a)",
-    scope: "Gestão da escola ou da rede de ensino",
-    icon: Building2,
-  },
+  { value: "Professora", label: "Professor(a)", scope: "Turmas e questões", icon: GraduationCap },
+  { value: "Coordenadora", label: "Coordenação", scope: "Revisão pedagógica", icon: ClipboardCheck },
+  { value: "Gestor Escolar", label: "Gestor(a) escolar", scope: "Unidade escolar", icon: Building2 },
+  { value: "Gestora", label: "Gestão da rede", scope: "Secretaria de educação", icon: Network },
 ];
 
-const DEFAULT_ROLE: Profile = "Estudante";
+const DEFAULT_ROLE: Profile = "Professora";
 
 export function LoginPage() {
   const { state, ready, setProfile, setAuthenticated } = useMentary();
@@ -124,6 +112,9 @@ export function LoginPage() {
                   </button>
                 ))}
               </div>
+              <button type="button" className={"auth-student-access" + (role === "Estudante" ? " selected" : "")} aria-pressed={role === "Estudante"} onClick={() => setRole("Estudante")}>
+                <GraduationCap size={15} aria-hidden="true" /> Acesso do estudante <ArrowRight size={14} aria-hidden="true" />
+              </button>
             </fieldset>
 
             <div className="auth-field">
