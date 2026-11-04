@@ -60,6 +60,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   key={n.path}
                   to={n.path}
                   className="nav-link"
+                  activeOptions={{ exact: true }}
                   data-status={path === n.path ? "active" : undefined}
                   title={compact ? n.title : undefined}
                   onClick={() => setMobile(false)}

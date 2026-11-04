@@ -485,7 +485,7 @@ function SettingsPage() {
   const [email, setEmail] = useState(state.settings.email);
   const isManager = state.profile === "Gestor Escolar";
   return (
-    <div className="page">
+    <div className={isManager ? "page manager-settings-page" : "page"}>
       <PageHeading
         title={isManager ? "Configurações da rede" : "Configurações"}
         description={

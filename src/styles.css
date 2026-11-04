@@ -6659,3 +6659,73 @@ body:has(.auth-page) {
     margin-left: auto;
   }
 }
+
+/* Gestor Escolar: cards use a single blue/cyan icon treatment. */
+.manager-frame .manager-console .mc-stat-icon,
+.manager-frame .manager-console .mc-stat-icon.mc-cyan,
+.manager-frame .manager-console .mc-stat-icon.mc-violet,
+.manager-frame .manager-console .mc-stat-icon.mc-orange,
+.manager-frame .manager-console .mc-stat-icon.mc-blue {
+  background: linear-gradient(135deg, #4940df 0%, #00bde4 100%);
+  color: #ffffff;
+}
+.manager-frame .manager-console .mc-stat-icon svg {
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+/* Gestor Escolar network settings: light UI like the other manager screens.
+   Scoped so teacher and other profile settings retain their original theme. */
+.manager-frame .manager-settings-page {
+  color: #211b4d;
+}
+.manager-frame .manager-settings-page .page-heading h1,
+.manager-frame .manager-settings-page .panel h2,
+.manager-frame .manager-settings-page .list-item strong,
+.manager-frame .manager-settings-page .field {
+  color: #211b4d;
+}
+.manager-frame .manager-settings-page .page-heading p,
+.manager-frame .manager-settings-page .panel-head p,
+.manager-frame .manager-settings-page .subtext {
+  color: #6e678f;
+}
+.manager-frame .manager-settings-page .panel {
+  background: #ffffff;
+  border: 1px solid #ddd9ec;
+  box-shadow: 0 4px 16px rgb(33 24 84 / 4%);
+}
+.manager-frame .manager-settings-page .panel-head,
+.manager-frame .manager-settings-page .list-item {
+  border-color: #e8e4f1;
+}
+.manager-frame .manager-settings-page .control {
+  background: #fbfaff;
+  color: #211b4d;
+  border: 1px solid #dcd7ef;
+}
+.manager-frame .manager-settings-page .control:focus-visible {
+  outline: 2px solid #9e90dd;
+}
+.manager-frame .manager-settings-page .list-item:hover {
+  background: #fbfaff;
+}
+.manager-frame .manager-settings-page input[type="checkbox"] {
+  accent-color: #4a33d4;
+}
+.manager-frame .manager-settings-page button:not([role="switch"]) {
+  color: #ffffff;
+}
+.manager-frame .manager-settings-page button[type="submit"] {
+  background: #4a33d4;
+  border-color: #4a33d4;
+}
+.manager-frame .manager-settings-page button[type="submit"]:hover {
+  background: #3c27b0;
+}
+.manager-frame .manager-settings-page button[data-variant="outline"],
+.manager-frame .manager-settings-page button.border-input {
+  background: #f5f3fb;
+  border-color: #dcd7ef;
+  color: #4a33a3;
+}
