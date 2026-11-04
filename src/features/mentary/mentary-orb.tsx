@@ -40,13 +40,12 @@ export function MentaryOrb() {
       <div className="auth-mascot-aura" aria-hidden="true" />
       <div className="auth-mascot-orbit auth-mascot-orbit-outer" aria-hidden="true" />
       <div className="auth-mascot-orbit auth-mascot-orbit-inner" aria-hidden="true" />
-      <div className="auth-mascot-platform" aria-hidden="true" />
       <img
         className="auth-mascot-image"
-        src="/mentary-capybara.webp"
+        src="/mentary.capivara.png"
         alt=""
         width="160"
-        height="196"
+        height="240"
         draggable={false}
       />
       <span className="auth-mascot-scan" aria-hidden="true" />
