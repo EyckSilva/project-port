@@ -6630,3 +6630,32 @@ body:has(.auth-page) {
   fill: #726a91 !important;
   color: #726a91 !important;
 }
+
+/* Gestor Escolar: compact heading and right-aligned search on light canvas. */
+.manager-frame .mc-heading-actions {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+.manager-frame .mc-search {
+  background: #ffffff;
+  color: #332565;
+  border: 1px solid #dcd7ed;
+  box-shadow: 0 2px 8px rgb(40 28 83 / 5%);
+}
+.manager-frame .mc-search:hover {
+  background: #f5f2ff;
+  color: #4a33d4;
+  border-color: #9e90dd;
+}
+.manager-frame .mc-search kbd {
+  color: #72688d;
+  background: #f5f2fb;
+  border-color: #ddd7ee;
+}
+.manager-frame .mc-heading { align-items: center; }
+@media (max-width: 900px) {
+  .manager-frame .mc-heading-actions {
+    width: auto;
+    margin-left: auto;
+  }
+}

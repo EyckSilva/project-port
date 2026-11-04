@@ -139,7 +139,7 @@ export function ManagerInsights({ activeTab = "resultados" }: { activeTab?: stri
     return () => window.removeEventListener("keydown", handle);
   }, []);
   return <main className="manager-console">
-    <div className="mc-heading"><div><div className="mc-eyebrow"><span className="mc-live-dot"/> INTELIGÊNCIA EDUCACIONAL <span className="mc-separator">/</span> GESTÃO ESCOLAR</div><h1>{page.title}</h1><p>{page.subtitle}</p></div><div className="mc-heading-actions"><button className="mc-search" onClick={() => setSearchOpen(true)}><Search size={15}/> Pesquisa rápida <kbd>Ctrl K</kbd></button><span className="mc-demo">Dados demonstrativos</span></div></div>
+    <div className="mc-heading"><div><h1>{page.title}</h1><p>{page.subtitle}</p></div><div className="mc-heading-actions"><button className="mc-search" onClick={() => setSearchOpen(true)}><Search size={15}/> Pesquisa rápida <kbd>Ctrl K</kbd></button></div></div>
     <div className="mc-filters" aria-label="Filtros do dashboard">
       <div className="mc-filter-title"><Filter size={15}/> Filtros <span>Os indicadores se atualizam automaticamente</span></div>
       <div className="mc-filter-grid">
