@@ -6433,3 +6433,129 @@ body:has(.auth-page) {
 .manager-frame .mc-separator { color:#8f89a9; }
 .manager-frame .mc-footer { color:#625d79; }
 .manager-frame .app-main > footer .demo-note { color:#625d79; }
+
+/* Gestor Escolar: light content surfaces on the white workspace.
+   Navigation sidebar and application header intentionally remain untouched. */
+.manager-frame .mc-filters,
+.manager-frame .mc-card,
+.manager-frame .mc-stat {
+  background: #faf9ff;
+  border: 1px solid #e5e0f2;
+  box-shadow: 0 6px 22px rgb(38 24 88 / 5%);
+}
+.manager-frame .mc-stat:first-child {
+  background: linear-gradient(145deg, #f4f0ff, #ffffff 85%);
+  border-color: #d9cdf8;
+}
+.manager-frame .mc-filter-title,
+.manager-frame .mc-card h2,
+.manager-frame .mc-stat strong,
+.manager-frame .mc-strong,
+.manager-frame .mc-alert-title strong,
+.manager-frame .mc-reports strong,
+.manager-frame .mc-docs strong,
+.manager-frame .mc-priorities strong,
+.manager-frame .mc-detail-content article strong {
+  color: #22183f;
+}
+.manager-frame .mc-stat-top,
+.manager-frame .mc-card-head p,
+.manager-frame .mc-filter-grid label,
+.manager-frame .mc-filter-title span,
+.manager-frame .mc-stat small,
+.manager-frame .mc-distribution-row,
+.manager-frame .mc-distribution-row strong,
+.manager-frame .mc-distribution-row small,
+.manager-frame .mc-footnote,
+.manager-frame .mc-priorities small,
+.manager-frame .mc-alert-body p,
+.manager-frame .mc-alert-body small,
+.manager-frame .mc-reports small,
+.manager-frame .mc-docs small,
+.manager-frame .mc-legend,
+.manager-frame .mc-no-data {
+  color: #655c82;
+}
+.manager-frame .mc-filter-grid select,
+.manager-frame .mc-target input {
+  background: #ffffff;
+  color: #261c44;
+  border-color: #dcd5ee;
+}
+.manager-frame .mc-filter-grid select:focus-visible,
+.manager-frame .mc-target input:focus-visible {
+  border-color: #4a33d4;
+}
+.manager-frame .manager-console th {
+  background: #f0edfa;
+  color: #645981;
+}
+.manager-frame .manager-console td {
+  color: #554a72;
+  border-bottom-color: #eae5f4;
+}
+.manager-frame .manager-console tbody tr:hover {
+  background: #f3f0fc;
+}
+.manager-frame .manager-console td.mc-strong,
+.manager-frame .mc-heatmap td:first-child {
+  color: #241a44;
+}
+.manager-frame .mc-track {
+  background: #e8e2f5;
+}
+.manager-frame .mc-stat-icon.mc-cyan {
+  background: linear-gradient(135deg, #4a33d4, #00c2e5);
+  color: #ffffff;
+}
+.manager-frame .mc-stat-icon.mc-violet { background: #ede7ff; color: #6048be; }
+.manager-frame .mc-stat-icon.mc-orange { background: #fff1db; color: #a96d1f; }
+.manager-frame .mc-stat-icon.mc-blue { background: #e6eeff; color: #4e52b7; }
+.manager-frame .mc-quiet-button,
+.manager-frame .mc-class-chip,
+.manager-frame .mc-segments,
+.manager-frame .mc-target input,
+.manager-frame .mc-reports button,
+.manager-frame .mc-icon-button {
+  background: #f2effb;
+  border-color: #ded7ee;
+  color: #4a33a3;
+}
+.manager-frame .mc-class-chip.active,
+.manager-frame .mc-segments button.active {
+  background: #e5dfff;
+  border-color: #8e78eb;
+  color: #3b269c;
+}
+.manager-frame .mc-class-chip span { border-color: #9386bd; }
+.manager-frame .mc-class-chip.active span { background: #4a33d4; color: #ffffff; }
+.manager-frame .mc-segments button { color: #655a80; }
+.manager-frame .mc-target { color: #534876; }
+.manager-frame .mc-alert,
+.manager-frame .mc-reports > div,
+.manager-frame .mc-docs > div,
+.manager-frame .mc-priorities button {
+  border-color: #e5e0f2;
+}
+.manager-frame .mc-alert-actions button {
+  background: #eeeaff;
+  border-color: #d5cbfb;
+  color: #4a33a3;
+}
+.manager-frame .mc-heatmap th:first-child,
+.manager-frame .mc-heatmap td:first-child {
+  background: #faf9ff;
+}
+.manager-frame .mc-heat-cell.empty { background: #f0edfa; color: #81769b; }
+.manager-frame .mc-resolution { color: #665a82; }
+.manager-frame .mc-resolution strong { color: #4a33d4; }
+.manager-frame .mc-chart .recharts-cartesian-axis-tick-value,
+.manager-frame .mc-chart .recharts-polar-angle-axis-tick-value,
+.manager-frame .mc-chart .recharts-legend-item-text {
+  fill: #655a80 !important;
+  color: #655a80 !important;
+}
+.manager-frame .mc-chart .recharts-cartesian-grid line,
+.manager-frame .mc-chart .recharts-polar-grid line {
+  stroke: #e8e2f2;
+}
