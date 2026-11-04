@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           ? "Revisar questões"
           : "";
   return (
-    <div className={"app-frame" + (state.profile === "Gestor Escolar" ? " manager-frame" : state.profile === "Professora" ? " teacher-frame" : "")}>
+    <div className={"app-frame" + (state.profile === "Gestor Escolar" ? " manager-frame" : ["Professora", "Coordenadora", "Gestora"].includes(state.profile) ? " teacher-frame" : "")}>
       <div className={`mobile-overlay ${mobile ? "open" : ""}`} onClick={() => setMobile(false)} />
       <aside className={`app-sidebar ${compact ? "compact" : ""} ${mobile ? "mobile-open" : ""}`}>
         <div className="brand-block">

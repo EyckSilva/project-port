@@ -59,10 +59,6 @@ export const managerNavGroups = [
       { title: "Informações gerenciais", path: "/dashboard/gerencial", icon: FileText },
     ],
   },
-  {
-    label: "ADMINISTRAÇÃO DA REDE",
-    items: [{ title: "Configurações da rede", path: "/configuracoes", icon: Settings }],
-  },
 ];
 
 /** Navigation shown in the workspace while only question extraction is enabled. */
@@ -78,6 +74,10 @@ export function getNavGroups(profile: Profile) {
   if (profile === "Administrador")
     return [
       ...managerNavGroups,
+      {
+        label: "ADMINISTRAÇÃO DA REDE",
+        items: [{ title: "Configurações da rede", path: "/configuracoes", icon: Settings }],
+      },
       {
         label: "USUÁRIOS",
         items: [{ title: "Usuários e carteirinhas", path: "/usuarios", icon: Users }],

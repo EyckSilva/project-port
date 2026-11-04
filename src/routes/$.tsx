@@ -75,6 +75,7 @@ function PlatformEntry({ path }: { path: string }) {
   if (!ready) return <div className="session-loading">Carregando plataforma…</div>;
   if (!state.authenticated) return <Navigate to="/login" replace />;
   const isManager = state.profile === "Gestor Escolar";
+  if (isManager && path === "/configuracoes") return <Navigate to="/dashboard" replace />;
   if (isManager && path.startsWith("/dashboard")) {
     const activeTab =
       path === "/dashboard/turmas"
