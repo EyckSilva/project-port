@@ -6327,7 +6327,7 @@ body:has(.auth-page) {
 
 /* Scoped Gestor Escolar analytics workspace */
 .manager-frame { --background:#070619; --foreground:#efeefb; --card:#0e0b2a; --muted:#151139; --muted-foreground:#9a95c2; --border:#241f52; --secondary:#1a1644; --primary:#00c2e5; --shadow-soft:none; background:#070619; color:#efeefb; }
-.manager-frame .app-main { background:radial-gradient(ellipse at 85% 0%, #191248 0%, #070619 54%); }
+.manager-frame .app-main { background:#ffffff; }
 .manager-frame .app-sidebar { background:#0b0823!important; border-right:1px solid #241f52; }
 .manager-frame .app-header { background:#100c2d!important; border-bottom:1px solid #241f52; }
 .manager-frame .sidebar-user { border-color:#282354; }
@@ -6425,3 +6425,11 @@ body:has(.auth-page) {
 .manager-frame .mc-segments button.active,.manager-frame .mc-class-chip.active { background:linear-gradient(135deg,#35248f,#172650); }
 .manager-frame .mc-stat-icon.mc-cyan { background:linear-gradient(135deg,#4a33d4,#00c2e5); color:#fff; }
 .manager-frame .mc-heat-cell:focus-visible,.manager-frame button:focus-visible { outline-color:#00c2e5; }
+
+/* White content canvas only; retain the login-inspired dark cards and navigation. */
+.manager-frame .mc-heading h1 { color:#181334; }
+.manager-frame .mc-heading p { color:#625d79; }
+.manager-frame .mc-eyebrow { color:#4932b5; }
+.manager-frame .mc-separator { color:#8f89a9; }
+.manager-frame .mc-footer { color:#625d79; }
+.manager-frame .app-main > footer .demo-note { color:#625d79; }
