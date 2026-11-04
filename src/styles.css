@@ -6942,3 +6942,62 @@ body:has(.auth-page) {
 @media (prefers-reduced-motion: reduce) {
   .auth-page .auth-mascot-orbit-outer { animation: none; }
 }
+
+/* Capybara login hero: balanced at native-size presentation.
+   Avoid enlarging or masking the relatively small existing mascot asset. */
+.auth-page .auth-mascot-art {
+  width: 260px;
+  height: 182px;
+  margin-bottom: 13px;
+}
+.auth-page .auth-mascot-aura {
+  width: 178px;
+  height: 154px;
+  top: 12px;
+  left: 41px;
+  filter: blur(17px);
+  opacity: .8;
+}
+.auth-page .auth-mascot-orbit {
+  inset: 11px 48px;
+  opacity: .72;
+}
+.auth-page .auth-mascot-orbit-outer {
+  inset: 4px 41px;
+}
+.auth-page .auth-mascot-orbit-inner {
+  background: radial-gradient(circle, #1c1655 0%, #100c38 55%, transparent 79%);
+}
+.auth-page .auth-mascot-image {
+  width: 136px;
+  height: 167px;
+  top: 4px;
+  left: 50%;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  transform: translateX(-50%);
+  -webkit-mask-image: none;
+  mask-image: none;
+  filter: drop-shadow(0 5px 9px rgb(4 3 25 / 32%));
+  image-rendering: auto;
+}
+.auth-page .auth-mascot-platform {
+  left: 73px;
+  right: 73px;
+  bottom: 3px;
+  opacity: .5;
+}
+.auth-page .auth-mascot-scan { display: none; }
+.auth-page .auth-mascot-spark-one { right: 34px; top: 20px; }
+.auth-page .auth-mascot-spark-two { left: 36px; bottom: 35px; }
+@media (max-width: 480px) {
+  .auth-page .auth-mascot-art { width: 224px; height: 164px; margin-bottom: 10px; }
+  .auth-page .auth-mascot-image { width: 120px; height: 147px; top: 4px; }
+  .auth-page .auth-mascot-aura { width: 156px; height: 138px; left: 34px; top: 10px; }
+  .auth-page .auth-mascot-orbit { inset: 10px 38px; }
+  .auth-page .auth-mascot-orbit-outer { inset: 3px 32px; }
+  .auth-page .auth-mascot-platform { left: 64px; right: 64px; }
+  .auth-page .auth-mascot-spark-one { right: 30px; }
+  .auth-page .auth-mascot-spark-two { left: 31px; }
+}

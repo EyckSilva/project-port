@@ -45,8 +45,8 @@ export function MentaryOrb() {
         className="auth-mascot-image"
         src="/mentary-capybara.webp"
         alt=""
-        width="120"
-        height="141"
+        width="160"
+        height="196"
         draggable={false}
       />
       <span className="auth-mascot-scan" aria-hidden="true" />
