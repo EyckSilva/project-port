@@ -13,7 +13,7 @@ import { LoginPage } from "@/features/mentary/login";
 import classroom from "@/assets/classroom.jpg";
 import { AppShell } from "@/features/mentary/shell";
 import { Dashboard } from "@/features/mentary/dashboard";
-import { ManagerDashboard } from "@/features/mentary/manager-dashboard";
+import { ManagerInsights } from "@/features/mentary/manager-insights";
 import { QuestionBank } from "@/features/mentary/questions";
 import { Assessments, AssessmentBuilder, Validator } from "@/features/mentary/assessments";
 import {
@@ -90,7 +90,7 @@ function PlatformEntry({ path }: { path: string }) {
                 : "resultados";
     return (
       <AppShell>
-        <ManagerDashboard activeTab={activeTab} />
+        <ManagerInsights activeTab={activeTab} />
       </AppShell>
     );
   }
