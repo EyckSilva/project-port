@@ -6559,3 +6559,74 @@ body:has(.auth-page) {
 .manager-frame .mc-chart .recharts-polar-grid line {
   stroke: #e8e2f2;
 }
+
+/* Gestor Escolar — visual claro fiel ao Extrator de Questões.
+   Apenas o canvas e os painéis; sidebar e header permanecem inalterados. */
+.manager-frame .app-main {
+  background: #f6f5fb;
+}
+.manager-frame .mc-filters,
+.manager-frame .mc-card,
+.manager-frame .mc-stat,
+.manager-frame .mc-stat:first-child {
+  background: #ffffff;
+  border: 1px solid #ddd9ec;
+  box-shadow: 0 4px 16px rgb(33 24 84 / 4%);
+}
+.manager-frame .mc-card h2,
+.manager-frame .mc-stat strong,
+.manager-frame .mc-filter-title,
+.manager-frame .mc-distribution-row strong,
+.manager-frame .mc-priorities strong,
+.manager-frame .mc-reports strong,
+.manager-frame .mc-docs strong,
+.manager-frame .mc-alert-title strong,
+.manager-frame .manager-console .mc-strong {
+  color: #211b4d;
+}
+.manager-frame .mc-card-head p,
+.manager-frame .mc-stat-top,
+.manager-frame .mc-stat small,
+.manager-frame .mc-filter-grid label,
+.manager-frame .mc-filter-title span,
+.manager-frame .mc-footnote,
+.manager-frame .mc-distribution-row,
+.manager-frame .mc-distribution-row small,
+.manager-frame .mc-priorities small,
+.manager-frame .mc-reports small,
+.manager-frame .mc-docs small,
+.manager-frame .mc-alert-body p,
+.manager-frame .mc-alert-body small,
+.manager-frame .mc-legend {
+  color: #6e678f;
+}
+.manager-frame .mc-filter-grid select {
+  background: #fbfaff;
+  border-color: #dcd7ef;
+  color: #25204c;
+}
+.manager-frame .mc-filters select:focus-visible {
+  outline: 2px solid #a99bf2;
+  border-color: #4a33d4;
+}
+.manager-frame .manager-console th { background: #f4f2fa; color: #736b94; }
+.manager-frame .manager-console td { color: #51496f; border-color: #ebe7f3; }
+.manager-frame .manager-console tbody tr:hover { background: #f7f5fd; }
+.manager-frame .mc-heatmap th:first-child,
+.manager-frame .mc-heatmap td:first-child { background: #ffffff; }
+.manager-frame .mc-track { background: #ece9f5; }
+.manager-frame .mc-stat:first-child { background: #ffffff; border-color: #ddd9ec; }
+.manager-frame .mc-priorities button,
+.manager-frame .mc-alert,
+.manager-frame .mc-reports > div,
+.manager-frame .mc-docs > div { border-color: #e8e4f1; }
+.manager-frame .mc-heading h1 { color: #211b4d; }
+.manager-frame .mc-heading p { color: #6e678f; }
+.manager-frame .mc-chart .recharts-cartesian-grid line,
+.manager-frame .mc-chart .recharts-polar-grid line { stroke: #e7e2f2; }
+.manager-frame .mc-chart .recharts-cartesian-axis-tick-value,
+.manager-frame .mc-chart .recharts-polar-angle-axis-tick-value,
+.manager-frame .mc-chart .recharts-legend-item-text {
+  fill: #726a91 !important;
+  color: #726a91 !important;
+}
