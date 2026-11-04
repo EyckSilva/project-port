@@ -6666,7 +6666,7 @@ body:has(.auth-page) {
 .manager-frame .manager-console .mc-stat-icon.mc-violet,
 .manager-frame .manager-console .mc-stat-icon.mc-orange,
 .manager-frame .manager-console .mc-stat-icon.mc-blue {
-  background: linear-gradient(135deg, #4940df 0%, #00bde4 100%);
+  background: #0B0823;
   color: #ffffff;
 }
 .manager-frame .manager-console .mc-stat-icon svg {
