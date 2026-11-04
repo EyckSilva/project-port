@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { Profile } from "./data";
 import { useMentary } from "./store";
 import { MentaryOrb } from "./mentary-orb";
@@ -73,15 +72,16 @@ export function LoginPage() {
         <form className="auth-form" onSubmit={submit}>
           <fieldset className="auth-fieldset">
             <legend className="auth-label">Perfil de acesso</legend>
-            <ToggleGroup
-              type="single"
-              value={role}
-              onValueChange={(value) => value && setRole(value as Profile)}
-              className="auth-role-grid"
-              aria-label="Perfil de acesso"
-            >
+            <div className="auth-role-grid" role="group" aria-label="Perfil de acesso">
               {loginRoles.map(({ value, label, scope, icon: Icon }) => (
-                <ToggleGroupItem key={value} value={value} className="auth-role">
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setRole(value)}
+                  aria-pressed={role === value}
+                  data-state={role === value ? "on" : "off"}
+                  className="auth-role"
+                >
                   <span className="auth-role-icon">
                     <Icon />
                   </span>
@@ -90,9 +90,9 @@ export function LoginPage() {
                     <small>{scope}</small>
                   </span>
                   <Check className="auth-role-check" />
-                </ToggleGroupItem>
+                </button>
               ))}
-            </ToggleGroup>
+            </div>
           </fieldset>
 
           <div className="auth-divider">Credenciais de acesso</div>
