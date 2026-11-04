@@ -1,8 +1,9 @@
-import { Navigate, useNavigate } from "@tanstack/react-router";
+import { Link, Navigate, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import {
   ArrowRight,
+  ArrowLeft,
   BarChart3,
   BookOpen,
   Building2,
@@ -58,8 +59,7 @@ export function LoginPage() {
     navigate({ to: "/dashboard" });
   };
 
-  const requestPasswordRecovery = () =>
-    toast.info("Ambiente demonstrativo: a recuperação de senha por e-mail não está habilitada.");
+  const requestPasswordRecovery = () => navigate({ to: "/recuperar-senha" });
 
   return (
     <main className="auth-page">
@@ -170,6 +170,61 @@ export function LoginPage() {
           <footer className="auth-foot">
             <p className="auth-copy">© 2026 Mentary. Todos os direitos reservados.</p>
           </footer>
+        </section>
+      </div>
+    </main>
+  );
+}
+
+export function ForgotPasswordPage() {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    toast.success("Se o e-mail estiver cadastrado, você receberá as instruções de acesso.");
+  };
+
+  return (
+    <main className="auth-recovery-page">
+      <div className="auth-recovery-layout">
+        <section className="auth-welcome" aria-label="Apresentação Mentary">
+          <div className="auth-welcome-glow" aria-hidden="true" />
+          <div className="auth-welcome-art">
+            <MentaryOrb />
+          </div>
+          <div className="auth-welcome-copy">
+            <h1>Bem-vindo à <strong>Mentary</strong></h1>
+            <span className="auth-welcome-line" aria-hidden="true" />
+            <p>Acesso seguro e gestão educacional<br />com mais eficiência, integração e resultados.</p>
+          </div>
+        </section>
+        <section className="auth-recovery-card" aria-labelledby="recovery-title">
+          <Link className="auth-recovery-back" to="/login">
+            <ArrowLeft />
+            Voltar para o acesso
+          </Link>
+          <p className="auth-recovery-eyebrow">Recuperar acesso</p>
+          <h1 id="recovery-title">Esqueceu sua senha?</h1>
+          <p className="auth-recovery-description">
+            Não se preocupe, informe o seu e-mail para receber as instruções de acesso.
+          </p>
+          <form className="auth-recovery-form" onSubmit={submit}>
+            <Label htmlFor="recovery-email">E-mail institucional</Label>
+            <Input
+              id="recovery-email"
+              type="email"
+              placeholder="Digite o seu e-mail"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+            <Button type="submit" size="lg">Receber senha</Button>
+          </form>
+          <p className="auth-secure">© 2026 Mentary</p>
+          <button className="auth-recovery-login" type="button" onClick={() => navigate({ to: "/login" })}>
+            Voltar para o acesso
+          </button>
         </section>
       </div>
     </main>

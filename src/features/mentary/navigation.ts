@@ -23,6 +23,7 @@ export const teacherNavGroups = [
     label: "FUNCIONALIDADES DO PROFESSOR",
     items: [
       { title: "Extração de questões", path: "/dashboard", icon: LayoutDashboard },
+      { title: "Roteiros de questões", path: "/simulados", icon: ClipboardList },
       { title: "Minhas turmas", path: "/turmas", icon: School },
       { title: "Alunos", path: "/meu-desempenho", icon: Users },
       { title: "Avaliações e simulados", path: "/simulados", icon: ClipboardList },
@@ -39,6 +40,16 @@ export const teacherNavGroups = [
     items: [
       { title: "Histórico de atividades", path: "/atividades", icon: History },
       { title: "Configurações", path: "/configuracoes", icon: Settings },
+    ],
+  },
+];
+
+export const limitedTeacherNavGroups = [
+  {
+    label: "PROFESSOR",
+    items: [
+      { title: "Extração de questões", path: "/dashboard", icon: LayoutDashboard },
+      { title: "Roteiros de questões", path: "/simulados", icon: ClipboardList },
     ],
   },
 ];
@@ -61,6 +72,17 @@ export const managerNavGroups = [
   },
 ];
 
+export const coordinatorNavGroups = [
+  {
+    label: "COORDENAÇÃO PEDAGÓGICA",
+    items: [
+      { title: "Visão pedagógica", path: "/dashboard", icon: LayoutDashboard },
+      { title: "Ações de recomposição", path: "/recomposicao", icon: Sparkles },
+      { title: "Relatórios", path: "/relatorios", icon: FileChartColumn },
+    ],
+  },
+];
+
 /** Navigation shown in the workspace while only question extraction is enabled. */
 export const workspaceNavGroups = [
   {
@@ -71,6 +93,8 @@ export const workspaceNavGroups = [
 
 export function getNavGroups(profile: Profile) {
   if (profile === "Gestor Escolar") return managerNavGroups;
+  if (profile === "Coordenadora") return coordinatorNavGroups;
+  if (profile === "Professora") return limitedTeacherNavGroups;
   if (profile === "Administrador")
     return [
       ...managerNavGroups,

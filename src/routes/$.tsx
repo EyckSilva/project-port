@@ -9,10 +9,10 @@ import { UsersPage } from "@/features/mentary/users";
 import { Interventions } from "@/features/mentary/interventions";
 import { ThresholdSettings } from "@/features/mentary/thresholds";
 import { useMentary } from "@/features/mentary/store";
-import { LoginPage } from "@/features/mentary/login";
+import { ForgotPasswordPage, LoginPage } from "@/features/mentary/login";
 import classroom from "@/assets/classroom.jpg";
 import { AppShell } from "@/features/mentary/shell";
-import { Dashboard } from "@/features/mentary/dashboard";
+import { CoordinatorDashboard, Dashboard } from "@/features/mentary/dashboard";
 import { ManagerInsights } from "@/features/mentary/manager-insights";
 import { QuestionBank } from "@/features/mentary/questions";
 import { Assessments, AssessmentBuilder, Validator } from "@/features/mentary/assessments";
@@ -72,6 +72,7 @@ export function CatchAll() {
 function PlatformEntry({ path }: { path: string }) {
   const { state, ready } = useMentary();
   if (path === "/login") return <LoginPage />;
+  if (path === "/recuperar-senha") return <ForgotPasswordPage />;
   if (!ready) return <div className="session-loading">Carregando plataforma…</div>;
   if (!state.authenticated) return <Navigate to="/login" replace />;
   const isManager = state.profile === "Gestor Escolar";
@@ -97,7 +98,13 @@ function PlatformEntry({ path }: { path: string }) {
   }
   return (
     <AppShell>
-      {path === WORKSPACE_HOME ? <ReviewWorkspace upload /> : <Workspace path={path} />}
+      {state.profile === "Coordenadora" && path.startsWith("/dashboard") ? (
+        <CoordinatorDashboard />
+      ) : path === WORKSPACE_HOME ? (
+        <ReviewWorkspace upload />
+      ) : (
+        <Workspace path={path} />
+      )}
     </AppShell>
   );
 }

@@ -75,6 +75,12 @@ function StudentPerformanceDashboard() {
         title="Desempenho por aluno"
         description="Acompanhe os resultados das avaliações e identifique quem precisa de apoio e quais habilidades priorizar."
       >
+        <Button variant="outline" asChild>
+          <Link to="/simulados">
+            <ClipboardList />
+            Roteiros de questões
+          </Link>
+        </Button>
         <Button asChild>
           <Link to="/recomposicao">
             <Sparkles />
@@ -669,6 +675,96 @@ function AnalyticsDashboard({ mode = "dashboard" }: { mode?: string }) {
           ))}
         </Panel>
       </div>
+    </div>
+  );
+}
+
+export function CoordinatorDashboard() {
+  const { state } = useMentary();
+  const [classId, setClassId] = useState("");
+  const [subject, setSubject] = useState("");
+  const classes = state.classes;
+  const students = state.students.filter((student) => !classId || student.classId === classId);
+  const average = mean(students);
+  const criticalSkills = skills
+    .filter((skill) => !subject || skill.subject === subject)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 5);
+  const classComparison = classes.map((room) => ({
+    name: room.name,
+    score: mean(state.students.filter((student) => student.classId === room.id)),
+  }));
+  const belowTarget = students.filter((student) => student.score < 60).length;
+
+  return (
+    <div className="page coordinator-dashboard">
+      <PageHeading
+        title="Visão pedagógica"
+        description="Precisa identificar descritores críticos, comparar turmas e acompanhar ações de recomposição."
+      >
+        <Button asChild>
+          <Link to="/recomposicao">
+            <Sparkles />
+            Planejar ação
+          </Link>
+        </Button>
+      </PageHeading>
+
+      <div className="filter-bar">
+        <SelectField
+          label="Turma"
+          value={classId}
+          onChange={setClassId}
+          all="Todas as turmas"
+          options={classes.map((room) => ({ value: room.id, label: room.name }))}
+        />
+        <SelectField
+          label="Área do conhecimento"
+          value={subject}
+          onChange={setSubject}
+          all="Todas as áreas"
+          options={subjects}
+        />
+        <span className="ml-auto"><DemoNote /></span>
+      </div>
+
+      <div className="metrics">
+        <Metric title="Desempenho médio" value={`${average}%`} icon={Target} note="No recorte atual" />
+        <Metric title="Descritores críticos" value={criticalSkills.length} icon={ListChecks} note="Abaixo de 70%" tone="warning" />
+        <Metric title="Estudantes em atenção" value={belowTarget} icon={Users} note="Abaixo de 60%" tone="warning" />
+        <Metric title="Turmas comparadas" value={classes.length} icon={School} note="Na rede acompanhada" tone="success" />
+      </div>
+
+      <div className="analytics-grid">
+        <Panel title="Descritores que pedem atenção" description="Prioridades para orientar o próximo ciclo pedagógico">
+          {criticalSkills.map((skill) => (
+            <div className="list-item" key={skill.id}>
+              <div className="grow">
+                <div className="flex justify-between gap-3">
+                  <strong className="text-sm">{skill.id} · {skill.name}</strong>
+                  <span className="text-warning text-xs font-semibold">{skill.score}%</span>
+                </div>
+                <p className="subtext">{skill.subject} · Recomposição recomendada</p>
+                <Progress value={skill.score} tone="warning" />
+              </div>
+            </div>
+          ))}
+        </Panel>
+        <Panel title="Comparação entre turmas" description="Média de acertos por grupo">
+          <div className="chart-wrap">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={classComparison} margin={{ top: 16, right: 12, left: 0, bottom: 4 }}>
+                <CartesianGrid stroke="var(--border)" vertical={false} strokeDasharray="3 4" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
+                <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`} axisLine={false} tickLine={false} width={42} />
+                <Tooltip formatter={(value: number) => [`${value}%`, "Média"]} />
+                <Bar dataKey="score" fill="var(--primary)" radius={[5, 5, 0, 0]} maxBarSize={38} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </Panel>
+      </div>
+
     </div>
   );
 }
