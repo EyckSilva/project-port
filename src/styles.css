@@ -6740,3 +6740,103 @@ body:has(.auth-page) {
   border-color: #dcd7ef;
   color: #4a33a3;
 }
+
+/* Professor workspace — same palette as Gestor Escolar; style-only scope.
+   Other profiles, screen structure and interactions remain unchanged. */
+.teacher-frame {
+  --background: #f6f5fb;
+  --foreground: #211b4d;
+  --card: #ffffff;
+  --muted: #f4f2fa;
+  --muted-foreground: #6e678f;
+  --secondary: #f0edff;
+  --border: #ddd9ec;
+  --primary: #4a33d4;
+  --primary-deep: #0b0823;
+  --primary-foreground: #ffffff;
+  --shadow-soft: 0 4px 16px rgb(33 24 84 / 4%);
+  color: #211b4d;
+  background: #f6f5fb;
+}
+.teacher-frame .app-main,
+.teacher-frame .page {
+  background: #f6f5fb;
+  color: #211b4d;
+}
+.teacher-frame .app-sidebar {
+  background: #0b0823 !important;
+  border-right: 1px solid #241f52;
+}
+.teacher-frame .app-header {
+  background: #100c2d !important;
+  border-bottom: 1px solid #241f52;
+}
+.teacher-frame .sidebar-user {
+  border-color: #282354;
+}
+.teacher-frame .sidebar-user .user-info h3 { color: #efeefb; }
+.teacher-frame .nav-link { color: #9a95c2; }
+.teacher-frame .nav-link:hover { background: #211b4e; color: #efeefb; }
+.teacher-frame .nav-link[data-status="active"] {
+  background: linear-gradient(100deg,#4a33d4,#241a78) !important;
+  color: #7fe9ff !important;
+  box-shadow: inset 3px 0 #00c2e5;
+}
+.teacher-frame .nav-label { color: #756ea4; }
+.teacher-frame .page .panel,
+.teacher-frame .page .filter-bar,
+.teacher-frame .page .metric,
+.teacher-frame .page .assessment-card,
+.teacher-frame .page .skill-card,
+.teacher-frame .page .recomposition-card,
+.teacher-frame .page .dashboard-stat-card,
+.teacher-frame .page .dashboard-work-card {
+  background: #ffffff;
+  border-color: #ddd9ec;
+  box-shadow: 0 4px 16px rgb(33 24 84 / 4%);
+}
+.teacher-frame .page-heading h1,
+.teacher-frame .panel-head h2,
+.teacher-frame .page h1,
+.teacher-frame .page h2,
+.teacher-frame .page h3,
+.teacher-frame .page .table-main {
+  color: #211b4d;
+}
+.teacher-frame .page-heading p,
+.teacher-frame .panel-head p,
+.teacher-frame .page .subtext,
+.teacher-frame .page .metric-label,
+.teacher-frame .page .metric-note,
+.teacher-frame .page .table-sub {
+  color: #6e678f;
+}
+.teacher-frame .page .control,
+.teacher-frame .page .search-input,
+.teacher-frame .page input:not([type="checkbox"]):not([type="radio"]),
+.teacher-frame .page textarea,
+.teacher-frame .page select {
+  border-color: #dcd7ef;
+  color: #211b4d;
+}
+.teacher-frame .page .control,
+.teacher-frame .page .search-input,
+.teacher-frame .page select {
+  background: #fbfaff;
+}
+.teacher-frame .page th { background: #f4f2fa; color: #736b94; }
+.teacher-frame .page td { border-color: #ebe7f3; color: #51496f; }
+.teacher-frame .page tbody tr:hover { background: #f7f5fd; }
+.teacher-frame .page .icon-tile {
+  background: #0b0823;
+  color: #ffffff;
+}
+.teacher-frame .page .badge:not(.success):not(.warning):not(.danger):not(.neutral) {
+  color: #4a33d4;
+  background: #f0edff;
+}
+.teacher-frame .page .progress-track { background: #ece9f5; }
+.teacher-frame .page .progress-fill { background: #4a33d4; }
+.teacher-frame .page input[type="checkbox"],
+.teacher-frame .page input[type="radio"] { accent-color: #4a33d4; }
+.teacher-frame .app-main > footer .demo-note { color: #6e678f; }
