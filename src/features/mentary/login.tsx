@@ -4,19 +4,9 @@ import { toast } from "sonner";
 import {
   ArrowRight,
   ArrowLeft,
-  BarChart3,
-  BookOpen,
   Building2,
-  Eye,
-  EyeOff,
-  LockKeyhole,
-  Mail,
-  ShieldCheck,
-  Users,
   Check,
-  ClipboardCheck,
   GraduationCap,
-  Network,
   Presentation,
   type LucideIcon,
 } from "lucide-react";
@@ -25,18 +15,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { Profile } from "./data";
 import { useMentary } from "./store";
-import { MentaryMark, MentaryOrb } from "./mentary-orb";
 
 type LoginRole = { value: Profile; label: string; scope: string; icon: LucideIcon };
 
 export const loginRoles: LoginRole[] = [
-  { value: "Professora", label: "Professor(a)", scope: "Turmas e questões", icon: GraduationCap },
-  { value: "Coordenadora", label: "Coordenação", scope: "Revisão pedagógica", icon: ClipboardCheck },
-  { value: "Gestor Escolar", label: "Gestor(a) escolar", scope: "Unidade escolar", icon: Building2 },
-  { value: "Gestora", label: "Gestão da rede", scope: "Secretaria de educação", icon: Network },
+  {
+    value: "Coordenadora",
+    label: "Sou coordenador(a)",
+    scope: "Revisão Pedagógica",
+    icon: GraduationCap,
+  },
+  {
+    value: "Professora",
+    label: "Sou professor(a)",
+    scope: "Turmas, questões e simulados",
+    icon: Presentation,
+  },
+  {
+    value: "Gestor Escolar",
+    label: "Sou gestor(a)",
+    scope: "Unidade Escolar",
+    icon: Building2,
+  },
 ];
 
-const DEFAULT_ROLE: Profile = "Professora";
+const DEFAULT_ROLE: Profile = "Coordenadora";
 
 export function LoginPage() {
   const { state, ready, setProfile, setAuthenticated } = useMentary();
@@ -44,7 +47,6 @@ export function LoginPage() {
   const [role, setRole] = useState<Profile>(DEFAULT_ROLE);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   if (ready && state.authenticated) return <Navigate to="/dashboard" replace />;
 
@@ -59,36 +61,32 @@ export function LoginPage() {
     navigate({ to: "/dashboard" });
   };
 
-  const requestPasswordRecovery = () => navigate({ to: "/recuperar-senha" });
+  const requestPasswordRecovery = () =>
+    navigate({ to: "/recuperar-senha" });
 
   return (
     <main className="auth-page">
-      <div className="auth-layout">
-        <section className="auth-welcome" aria-label="Apresentação Mentary">
-          <div className="auth-welcome-glow" aria-hidden="true" />
-          <div className="auth-welcome-art">
-            <MentaryOrb />
-            <span className="auth-feature auth-feature-graduation" aria-hidden="true"><GraduationCap /></span>
-            <span className="auth-feature auth-feature-chart" aria-hidden="true"><BarChart3 /></span>
-            <span className="auth-feature auth-feature-book" aria-hidden="true"><BookOpen /></span>
-            <span className="auth-feature auth-feature-users" aria-hidden="true"><Users /></span>
-          </div>
-          <div className="auth-welcome-copy">
-            <h1>Bem-vindo à <strong>Mentary</strong></h1>
+      <div className="auth-split-layout">
+        <section className="auth-visual" aria-label="Apresentação Mentary">
+          <img
+            className="auth-hero-image"
+            src="/capivara2.png"
+            alt="Mascote Mentary com elementos de tecnologia educacional"
+          />
+          <div className="auth-visual-copy">
+            <h1>Bem-vindo a <strong>Mentary</strong></h1>
             <span className="auth-welcome-line" aria-hidden="true" />
-            <p>Acesso seguro e gestão educacional<br />com mais eficiência, integração e resultados.</p>
+            <p>
+              Simulados, avaliações e acompanhamento do <span className="auth-copy-orange">desempenho</span><br />
+              em um só lugar, para <span className="auth-copy-cyan">estudantes</span>, professores e <span className="auth-copy-pink">gestores.</span>
+            </p>
           </div>
         </section>
 
-        <section className="auth-card" aria-label="Acesso à plataforma">
-          <div className="auth-card-head">
-            <div className="auth-card-brand" aria-label="Mentary">
-              <MentaryMark />
-              <span>MENTARY</span>
-            </div>
-            <h2>Acesse a plataforma</h2>
-            <p>Entre com seu perfil e acesse a gestão educacional da sua rede.</p>
-          </div>
+        <section className="auth-login-card" aria-label="Acesso à plataforma">
+          <h2 className="auth-title">Acesse a plataforma</h2>
+          <p className="auth-subtitle">Entre com seu perfil e acesse a gestão educacional da sua rede.</p>
+
           <form className="auth-form" onSubmit={submit}>
             <fieldset className="auth-fieldset">
               <legend className="auth-label">Perfil de acesso</legend>
@@ -112,64 +110,52 @@ export function LoginPage() {
                   </button>
                 ))}
               </div>
-              <button type="button" className={"auth-student-access" + (role === "Estudante" ? " selected" : "")} aria-pressed={role === "Estudante"} onClick={() => setRole("Estudante")}>
-                <GraduationCap size={15} aria-hidden="true" /> Acesso do estudante <ArrowRight size={14} aria-hidden="true" />
-              </button>
             </fieldset>
 
             <div className="auth-field">
               <Label htmlFor="auth-email" className="auth-label">E-mail institucional</Label>
-              <div className="auth-input-wrap">
-                <Mail size={17} aria-hidden="true" />
-                <Input
-                  id="auth-email"
-                  className="auth-input"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="Digite seu e-mail institucional"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
+              <Input
+                id="auth-email"
+                className="auth-input"
+                type="email"
+                autoComplete="email"
+                placeholder="Digite seu e-mail institucional"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
 
             <div className="auth-field">
-              <Label htmlFor="auth-password" className="auth-label">Senha</Label>
-              <div className="auth-input-wrap">
-                <LockKeyhole size={17} aria-hidden="true" />
-                <Input
-                  id="auth-password"
-                  className="auth-input"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
-                  placeholder="Digite sua senha"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  minLength={4}
-                  required
-                />
-                <button type="button" className="auth-password-toggle" onClick={() => setShowPassword((current) => !current)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"} aria-pressed={showPassword}>
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              <div className="auth-field-row">
+                <Label htmlFor="auth-password" className="auth-label">Senha</Label>
+                <button type="button" className="auth-link" onClick={requestPasswordRecovery}>
+                  Esqueceu a senha?
                 </button>
               </div>
+              <Input
+                id="auth-password"
+                className="auth-input"
+                type="password"
+                autoComplete="current-password"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={4}
+                required
+              />
             </div>
 
-            <div className="auth-form-options">
-              <label className="auth-remember">
-                <input type="checkbox" />
-                <span>Lembrar-me</span>
-              </label>
-              <button type="button" className="auth-link" onClick={requestPasswordRecovery}>Esqueceu a senha?</button>
-            </div>
+            <label className="auth-remember">
+              <input type="checkbox" />
+              <span>Lembrar-me</span>
+            </label>
             <Button type="submit" size="lg" className="auth-submit">
               Entrar <ArrowRight />
             </Button>
           </form>
-          <p className="auth-secure"><ShieldCheck size={15} aria-hidden="true" /> Ambiente demonstrativo de acesso</p>
-          <footer className="auth-foot">
-            <p className="auth-copy">© 2026 Mentary. Todos os direitos reservados.</p>
-          </footer>
+          <p className="auth-secure">© 2026 Mentary</p>
+          
         </section>
       </div>
     </main>
@@ -188,15 +174,19 @@ export function ForgotPasswordPage() {
   return (
     <main className="auth-recovery-page">
       <div className="auth-recovery-layout">
-        <section className="auth-welcome" aria-label="Apresentação Mentary">
-          <div className="auth-welcome-glow" aria-hidden="true" />
-          <div className="auth-welcome-art">
-            <MentaryOrb />
-          </div>
-          <div className="auth-welcome-copy">
-            <h1>Bem-vindo à <strong>Mentary</strong></h1>
+        <section className="auth-visual" aria-label="Apresentação Mentary">
+          <img
+            className="auth-hero-image"
+            src="/capivara2.png"
+            alt="Mascote Mentary com elementos de tecnologia educacional"
+          />
+          <div className="auth-visual-copy">
+            <h1>Bem-vindo a <strong>Mentary</strong></h1>
             <span className="auth-welcome-line" aria-hidden="true" />
-            <p>Acesso seguro e gestão educacional<br />com mais eficiência, integração e resultados.</p>
+            <p>
+              Simulados, avaliações e acompanhamento do <span className="auth-copy-orange">desempenho</span><br />
+              em um só lugar, para <span className="auth-copy-cyan">estudantes</span>, professores e <span className="auth-copy-pink">gestores.</span>
+            </p>
           </div>
         </section>
         <section className="auth-recovery-card" aria-labelledby="recovery-title">
@@ -222,9 +212,6 @@ export function ForgotPasswordPage() {
             <Button type="submit" size="lg">Receber senha</Button>
           </form>
           <p className="auth-secure">© 2026 Mentary</p>
-          <button className="auth-recovery-login" type="button" onClick={() => navigate({ to: "/login" })}>
-            Voltar para o acesso
-          </button>
         </section>
       </div>
     </main>
