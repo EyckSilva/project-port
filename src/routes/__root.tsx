@@ -7,8 +7,12 @@ import {
   HeadContent,
   Scripts,
   type ErrorComponentProps,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Toaster } from "sonner";
+import { MentaryProvider } from "@/features/mentary/store";
+import "../tailwind.css";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -78,21 +82,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Mentary — Inteligência Educacional" },
+      {
+        name: "description",
+        content:
+          "Organize avaliações, acompanhe habilidades e transforme dados em estratégias de aprendizagem.",
+      },
+      { name: "author", content: "Mentary" },
+      { property: "og:title", content: "Mentary — Inteligência Educacional" },
+      {
+        property: "og:description",
+        content: "Inteligência educacional para decisões pedagógicas mais conscientes.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@mentary" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=ADLaM+Display&family=DM+Sans:wght@400;500;600;700;800&display=swap",
+      },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
   }),
   shellComponent: RootShell,
@@ -103,7 +120,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -117,11 +134,63 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    if (pathname === "/login") return;
+    const elements = document.querySelectorAll<HTMLElement>(
+      [
+        ".page > .page-heading",
+        ".page > .filter-bar",
+        ".page > .notice",
+        ".page > .stepper",
+        ".page > .metrics > *",
+        ".page > .analytics-grid > *",
+        ".page > .grid-three > *",
+        ".page > .grid-two > *",
+        ".page > .panel",
+        ".page tbody tr",
+        ".assessment-card",
+        ".skill-card",
+        ".recomposition-card",
+        ".dashboard-welcome > *",
+        ".dashboard-stat-grid > *",
+        ".dashboard-work-grid > *",
+        ".dashboard-features-heading",
+        ".dashboard-feature-grid > *",
+      ].join(","),
+    );
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -36px 0px" },
+    );
+
+    elements.forEach((element, index) => {
+      element.classList.add("scroll-reveal");
+      element.style.setProperty("--scroll-delay", `${(index % 4) * 70}ms`);
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <MentaryProvider>
+        <Toaster richColors position="top-right" />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </MentaryProvider>
     </QueryClientProvider>
   );
 }
