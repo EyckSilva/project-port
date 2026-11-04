@@ -6677,7 +6677,18 @@ body:has(.auth-page) {
 /* Gestor Escolar network settings: light UI like the other manager screens.
    Scoped so teacher and other profile settings retain their original theme. */
 .manager-frame .manager-settings-page {
+  background: #f6f5fb;
   color: #211b4d;
+  min-height: calc(100vh - 126px);
+}
+.manager-frame .manager-settings-page .page-heading {
+  margin-bottom: 24px;
+}
+.manager-frame .manager-settings-page .page-heading h1 {
+  color: #211b4d;
+}
+.manager-frame .manager-settings-page .page-heading p {
+  color: #6e678f;
 }
 .manager-frame .manager-settings-page .page-heading h1,
 .manager-frame .manager-settings-page .panel h2,
