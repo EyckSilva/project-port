@@ -3,7 +3,15 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import {
   ArrowRight,
+  BarChart3,
+  BookOpen,
   Building2,
+  Eye,
+  EyeOff,
+  LockKeyhole,
+  Mail,
+  ShieldCheck,
+  Users,
   Check,
   GraduationCap,
   Presentation,
@@ -47,6 +55,7 @@ export function LoginPage() {
   const [role, setRole] = useState<Profile>(DEFAULT_ROLE);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   if (ready && state.authenticated) return <Navigate to="/dashboard" replace />;
 
@@ -71,9 +80,12 @@ export function LoginPage() {
           <div className="auth-welcome-glow" aria-hidden="true" />
           <div className="auth-welcome-art">
             <MentaryOrb />
+            <span className="auth-feature auth-feature-graduation" aria-hidden="true"><GraduationCap /></span>
+            <span className="auth-feature auth-feature-chart" aria-hidden="true"><BarChart3 /></span>
+            <span className="auth-feature auth-feature-book" aria-hidden="true"><BookOpen /></span>
+            <span className="auth-feature auth-feature-users" aria-hidden="true"><Users /></span>
           </div>
           <div className="auth-welcome-copy">
-            <p className="auth-eyebrow">Educação que transforma</p>
             <h1>Bem-vindo à <strong>Mentary</strong></h1>
             <span className="auth-welcome-line" aria-hidden="true" />
             <p>Acesso seguro e gestão educacional<br />com mais eficiência, integração e resultados.</p>
@@ -86,7 +98,6 @@ export function LoginPage() {
               <MentaryMark />
               <span>MENTARY</span>
             </div>
-            <p className="auth-eyebrow">Acesso seguro</p>
             <h2>Acesse a plataforma</h2>
             <p>Entre com seu perfil e acesse a gestão educacional da sua rede.</p>
           </div>
@@ -117,47 +128,54 @@ export function LoginPage() {
 
             <div className="auth-field">
               <Label htmlFor="auth-email" className="auth-label">E-mail institucional</Label>
-              <Input
-                id="auth-email"
-                className="auth-input"
-                type="email"
-                autoComplete="email"
-                placeholder="Digite seu e-mail institucional"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <div className="auth-input-wrap">
+                <Mail size={17} aria-hidden="true" />
+                <Input
+                  id="auth-email"
+                  className="auth-input"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Digite seu e-mail institucional"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
             </div>
 
             <div className="auth-field">
-              <div className="auth-field-row">
-                <Label htmlFor="auth-password" className="auth-label">Senha</Label>
-                <button type="button" className="auth-link" onClick={requestPasswordRecovery}>
-                  Esqueceu a senha?
+              <Label htmlFor="auth-password" className="auth-label">Senha</Label>
+              <div className="auth-input-wrap">
+                <LockKeyhole size={17} aria-hidden="true" />
+                <Input
+                  id="auth-password"
+                  className="auth-input"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  placeholder="Digite sua senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  minLength={4}
+                  required
+                />
+                <button type="button" className="auth-password-toggle" onClick={() => setShowPassword((current) => !current)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"} aria-pressed={showPassword}>
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              <Input
-                id="auth-password"
-                className="auth-input"
-                type="password"
-                autoComplete="current-password"
-                placeholder="Digite sua senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                minLength={4}
-                required
-              />
             </div>
 
-            <label className="auth-remember">
-              <input type="checkbox" />
-              <span>Lembrar-me</span>
-            </label>
+            <div className="auth-form-options">
+              <label className="auth-remember">
+                <input type="checkbox" />
+                <span>Lembrar-me</span>
+              </label>
+              <button type="button" className="auth-link" onClick={requestPasswordRecovery}>Esqueceu a senha?</button>
+            </div>
             <Button type="submit" size="lg" className="auth-submit">
               Entrar <ArrowRight />
             </Button>
           </form>
-          <p className="auth-secure">Acesso seguro, criptografado e protegido.</p>
+          <p className="auth-secure"><ShieldCheck size={15} aria-hidden="true" /> Ambiente demonstrativo de acesso</p>
           <footer className="auth-foot">
             <p className="auth-copy">© 2026 Mentary. Todos os direitos reservados.</p>
           </footer>
