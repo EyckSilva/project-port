@@ -29,52 +29,29 @@ const EDGE_NODES: Array<[number, number]> = [
 
 const DOTS = ["d1", "d2", "d3", "d4", "d5", "d6"];
 
-/** Decorative Mentary "M" mark rendered as a glowing circuit orb over a grid. */
+/** Login mascot: a cyber-inspired capybara, with the existing circuit motif preserved. */
 export function MentaryOrb() {
   return (
-    <div className="auth-art" aria-hidden="true">
-      <div className="auth-art-grid" />
+    <div className="auth-art auth-mascot-art" aria-label="Mascote capivara tecnológica do Mentary" role="img">
+      <div className="auth-art-grid" aria-hidden="true" />
       {DOTS.map((dot) => (
-        <span key={dot} className={`auth-art-dot auth-art-${dot}`} />
+        <span key={dot} className={`auth-art-dot auth-art-${dot}`} aria-hidden="true" />
       ))}
-      <div className="auth-orb-wrap">
-        <div className="auth-orb-glow" />
-        <div className="auth-orb-ring" />
-        <div className="auth-orb">
-          <svg viewBox="-4 -4 72 72" fill="none">
-            <defs>
-              <linearGradient id="mentary-orb-mark" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#9ff5ff" />
-                <stop offset="1" stopColor="#00c2e5" />
-              </linearGradient>
-            </defs>
-            <g
-              className="auth-orb-traces"
-              stroke="#7fe9ff"
-              strokeWidth="0.7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {TRACES.map((d) => (
-                <path key={d} d={d} />
-              ))}
-            </g>
-            <path d={MARK_PATH} fill="url(#mentary-orb-mark)" />
-            {EDGE_NODES.map(([cx, cy]) => (
-              <circle
-                key={`e${cx}-${cy}`}
-                className="auth-orb-node is-dim"
-                cx={cx}
-                cy={cy}
-                r="1.4"
-              />
-            ))}
-            {JOINT_NODES.map(([cx, cy]) => (
-              <circle key={`j${cx}-${cy}`} className="auth-orb-node" cx={cx} cy={cy} r="1.7" />
-            ))}
-          </svg>
-        </div>
-      </div>
+      <div className="auth-mascot-aura" aria-hidden="true" />
+      <div className="auth-mascot-orbit auth-mascot-orbit-outer" aria-hidden="true" />
+      <div className="auth-mascot-orbit auth-mascot-orbit-inner" aria-hidden="true" />
+      <div className="auth-mascot-platform" aria-hidden="true" />
+      <img
+        className="auth-mascot-image"
+        src="/mentary-capybara.webp"
+        alt=""
+        width="120"
+        height="141"
+        draggable={false}
+      />
+      <span className="auth-mascot-scan" aria-hidden="true" />
+      <span className="auth-mascot-spark auth-mascot-spark-one" aria-hidden="true" />
+      <span className="auth-mascot-spark auth-mascot-spark-two" aria-hidden="true" />
     </div>
   );
 }

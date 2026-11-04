@@ -6840,3 +6840,105 @@ body:has(.auth-page) {
 .teacher-frame .page input[type="checkbox"],
 .teacher-frame .page input[type="radio"] { accent-color: #4a33d4; }
 .teacher-frame .app-main > footer .demo-note { color: #6e678f; }
+
+
+/* Login only: replace the M orb with the supplied capybara mascot.
+   Technology details are decorative and never intercept form interactions. */
+.auth-page .auth-mascot-art {
+  width: 300px;
+  height: 210px;
+  margin-bottom: 6px;
+  isolation: isolate;
+  pointer-events: none;
+}
+.auth-page .auth-mascot-aura {
+  position: absolute;
+  width: 212px;
+  height: 182px;
+  top: 12px;
+  left: 44px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 55%, rgb(0 194 229 / 25%) 0%, rgb(74 51 212 / 26%) 37%, transparent 72%);
+  filter: blur(11px);
+}
+.auth-page .auth-mascot-orbit {
+  position: absolute;
+  inset: 19px 58px;
+  border: 1px solid rgb(127 233 255 / 32%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgb(0 194 229 / 9%), inset 0 0 14px rgb(0 194 229 / 6%);
+}
+.auth-page .auth-mascot-orbit-outer {
+  inset: 10px 49px;
+  border-style: dashed;
+  border-color: rgb(127 233 255 / 23%);
+  animation: auth-spin 42s linear infinite;
+}
+.auth-page .auth-mascot-orbit-inner {
+  background: radial-gradient(circle, #261a6a 0%, #100c38 58%, transparent 78%);
+}
+.auth-page .auth-mascot-image {
+  position: absolute;
+  width: 174px;
+  height: 205px;
+  object-fit: contain;
+  left: 50%;
+  top: 2px;
+  transform: translateX(-50%);
+  z-index: 2;
+  filter: drop-shadow(0 0 15px rgb(0 194 229 / 25%)) drop-shadow(0 8px 12px rgb(3 2 20 / 50%));
+  -webkit-mask-image: linear-gradient(#000 0%, #000 83%, transparent 100%);
+  mask-image: linear-gradient(#000 0%, #000 83%, transparent 100%);
+}
+.auth-page .auth-mascot-platform {
+  position: absolute;
+  left: 83px;
+  right: 83px;
+  bottom: 7px;
+  height: 12px;
+  border: 1px solid rgb(0 194 229 / 42%);
+  border-radius: 50%;
+  background: rgb(0 194 229 / 9%);
+  box-shadow: 0 0 22px rgb(0 194 229 / 35%);
+}
+.auth-page .auth-mascot-scan {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  top: 87px;
+  height: 1px;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent, rgb(127 233 255 / 50%), transparent);
+  opacity: 0.75;
+}
+.auth-page .auth-mascot-spark {
+  position: absolute;
+  z-index: 3;
+  width: 5px;
+  height: 5px;
+  background: #7fe9ff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #00c2e5;
+}
+.auth-page .auth-mascot-spark-one { top: 32px; right: 52px; }
+.auth-page .auth-mascot-spark-two { bottom: 55px; left: 52px; width: 3px; height: 3px; }
+@media (max-width: 480px) {
+  .auth-page .auth-mascot-art {
+    width: 260px;
+    height: 188px;
+  }
+  .auth-page .auth-mascot-image {
+    width: 152px;
+    height: 181px;
+  }
+  .auth-page .auth-mascot-aura { left: 25px; }
+  .auth-page .auth-mascot-orbit { inset: 15px 43px; }
+  .auth-page .auth-mascot-orbit-outer { inset: 6px 34px; }
+  .auth-page .auth-mascot-platform { left: 68px; right: 68px; }
+  .auth-page .auth-mascot-scan { left: 47px; right: 47px; }
+  .auth-page .auth-mascot-spark-one { right: 34px; }
+  .auth-page .auth-mascot-spark-two { left: 35px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-page .auth-mascot-orbit-outer { animation: none; }
+}
