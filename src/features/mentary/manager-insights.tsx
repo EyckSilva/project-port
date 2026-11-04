@@ -16,10 +16,10 @@ const sections = [
   { key: "gerencial", title: "Informações gerenciais", subtitle: "Visão consolidada e exportação dos dados disponíveis." },
 ] as const;
 
-const palette = ["#43d9ec", "#8879ff", "#fbbd72", "#60b7ff"];
-const grid = { stroke: "#253347", strokeDasharray: "3 5" };
-const axis = { fill: "#8898ae", fontSize: 11 };
-const tooltipStyle = { background: "#161f2e", border: "1px solid #314159", borderRadius: 10, color: "#edf6ff" };
+const palette = ["#00c2e5", "#8e76ff", "#fbbd72", "#6754e8"];
+const grid = { stroke: "#2b245f", strokeDasharray: "3 5" };
+const axis = { fill: "#9a95c2", fontSize: 11 };
+const tooltipStyle = { background: "#0e0b2a", border: "1px solid #314159", borderRadius: 10, color: "#efeefb" };
 const percent = (v: number | null) => v === null ? "—" : v.toFixed(1).replace(".", ",") + "%";
 const scoreOf = (rows: Response[], questions: ReturnType<typeof useMentary>["state"]["questions"]) => aggregate(rows, questions).score;
 const monthLabel = (date: string) => new Date(date + "T12:00:00").toLocaleDateString("pt-BR", { month: "short", year: "numeric" });
@@ -89,8 +89,8 @@ export function ManagerInsights({ activeTab = "resultados" }: { activeTab?: stri
   const distribution = [
     { name: "Abaixo do básico", min: 0, max: 40, color: "#f37b8f" },
     { name: "Básico", min: 40, max: 60, color: "#f4b966" },
-    { name: "Adequado", min: 60, max: 80, color: "#45d5e9" },
-    { name: "Avançado", min: 80, max: 101, color: "#8b85ff" },
+    { name: "Adequado", min: 60, max: 80, color: "#00c2e5" },
+    { name: "Avançado", min: 80, max: 101, color: "#8e76ff" },
   ].map(level => {
     const scores = schoolStudents.map(student => scoreOf(responseRows.filter(r => r.studentId === student.id), questions)).filter((s): s is number => s !== null);
     return { ...level, count: scores.filter(s => s >= level.min && s < level.max).length, total: scores.length };
@@ -162,7 +162,7 @@ export function ManagerInsights({ activeTab = "resultados" }: { activeTab?: stri
           <p className="mc-footnote">Faixas exploratórias calculadas com base em acertos; não são classificações oficiais do SAEB.</p>
         </Card>
         <Card title="Trajetória recente" subtitle="Média de acertos por aplicação">
-          <div className="mc-chart"><ResponsiveContainer width="100%" height="100%"><AreaChart data={evolution}><defs><linearGradient id="mc-gradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#43d9ec" stopOpacity={0.24}/><stop offset="100%" stopColor="#43d9ec" stopOpacity={0}/></linearGradient></defs><CartesianGrid vertical={false} {...grid}/><XAxis dataKey="label" tick={axis}/><YAxis domain={[0,100]} tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Area type="monotone" dataKey="actual" name="Acertos (%)" stroke="#43d9ec" fill="url(#mc-gradient)" strokeWidth={3} connectNulls={false}/></AreaChart></ResponsiveContainer></div>
+          <div className="mc-chart"><ResponsiveContainer width="100%" height="100%"><AreaChart data={evolution}><defs><linearGradient id="mc-gradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#00c2e5" stopOpacity={0.24}/><stop offset="100%" stopColor="#00c2e5" stopOpacity={0}/></linearGradient></defs><CartesianGrid vertical={false} {...grid}/><XAxis dataKey="label" tick={axis}/><YAxis domain={[0,100]} tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Area type="monotone" dataKey="actual" name="Acertos (%)" stroke="#00c2e5" fill="url(#mc-gradient)" strokeWidth={3} connectNulls={false}/></AreaChart></ResponsiveContainer></div>
         </Card>
       </div>
       <Card title="Desempenho por disciplina" subtitle="Consolidado de questões e respostas" action={<button className="mc-quiet-button" onClick={exportSummary}><ArrowDownToLine size={14}/> Exportar CSV</button>}>
@@ -179,7 +179,7 @@ export function ManagerInsights({ activeTab = "resultados" }: { activeTab?: stri
           <div className="mc-chart mc-chart-lg"><ResponsiveContainer width="100%" height="100%"><BarChart data={comparison}><CartesianGrid vertical={false} {...grid}/><XAxis dataKey="name" tick={axis}/><YAxis domain={[0,100]} tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Legend/>{selectedClasses.map((id, i) => <Bar key={id} dataKey={id} name={classes.find(c => c.id === id)?.name ?? id} fill={palette[i]} radius={[4,4,0,0]}/>)}</BarChart></ResponsiveContainer></div>
         </Card>
         <Card title="Perfil das turmas" subtitle="Indicadores observáveis (0–100); participação não é frequência">
-          <div className="mc-chart mc-chart-lg"><ResponsiveContainer width="100%" height="100%"><RadarChart data={radar} outerRadius="65%"><PolarGrid stroke="#314159"/><PolarAngleAxis dataKey="metric" tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Legend/>{selectedClasses.map((id, i) => <Radar key={id} dataKey={id} name={classes.find(c => c.id === id)?.name ?? id} stroke={palette[i]} fill={palette[i]} fillOpacity={0.08}/>)}</RadarChart></ResponsiveContainer></div>
+          <div className="mc-chart mc-chart-lg"><ResponsiveContainer width="100%" height="100%"><RadarChart data={radar} outerRadius="65%"><PolarGrid stroke="#30295e"/><PolarAngleAxis dataKey="metric" tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Legend/>{selectedClasses.map((id, i) => <Radar key={id} dataKey={id} name={classes.find(c => c.id === id)?.name ?? id} stroke={palette[i]} fill={palette[i]} fillOpacity={0.08}/>)}</RadarChart></ResponsiveContainer></div>
         </Card>
       </div>
       <Card title="Tabela comparativa" subtitle="Diferença entre os extremos de cada disciplina; destaque a partir de 15 pontos percentuais">
@@ -189,7 +189,7 @@ export function ManagerInsights({ activeTab = "resultados" }: { activeTab?: stri
     {activeTab === "evolucao" && <div className="mc-stack">
       <div className="mc-toolbar"><div className="mc-segments">{["mensal", "bimestral", "historico"].map(value => <button key={value} className={frequency === value ? "active" : ""} onClick={() => setFrequency(value)}>{value === "historico" ? "Histórico" : value === "mensal" ? "Mensal" : "Bimestral"}</button>)}</div><label className="mc-target">Meta de acertos <input type="number" min={0} max={100} value={target} onChange={e => setTarget(Math.min(100, Math.max(0, Number(e.target.value))))}/>%</label></div>
       <Card title="Evolução da proficiência" subtitle={frequency === "historico" ? "Histórico disponível: aplicações registradas em 2026" : "Períodos disponíveis agrupados por aplicação registrada"}>
-        <div className="mc-chart mc-chart-lg"><ResponsiveContainer width="100%" height="100%"><LineChart data={evolution}><CartesianGrid vertical={false} {...grid}/><XAxis dataKey="label" tick={axis}/><YAxis domain={[0,100]} tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Legend/><Line type="monotone" dataKey="actual" name="Resultado" stroke="#43d9ec" strokeWidth={3} dot={{r:5}} connectNulls={false}/><Line type="monotone" dataKey="goal" name="Meta configurada" stroke="#8a82ff" strokeDasharray="6 5" dot={false}/></LineChart></ResponsiveContainer></div>
+        <div className="mc-chart mc-chart-lg"><ResponsiveContainer width="100%" height="100%"><LineChart data={evolution}><CartesianGrid vertical={false} {...grid}/><XAxis dataKey="label" tick={axis}/><YAxis domain={[0,100]} tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Legend/><Line type="monotone" dataKey="actual" name="Resultado" stroke="#00c2e5" strokeWidth={3} dot={{r:5}} connectNulls={false}/><Line type="monotone" dataKey="goal" name="Meta configurada" stroke="#8e76ff" strokeDasharray="6 5" dot={false}/></LineChart></ResponsiveContainer></div>
       </Card>
       <Card title="Evolução por coorte" subtitle="Turmas acompanhadas em cada aplicação registrada">
         <div className="mc-table-scroll"><table><thead><tr><th>TURMA</th>{periodReports.map(a => <th key={a.id}>{monthLabel(a.date)}</th>)}<th>GANHO</th></tr></thead><tbody>{relevantClasses.map(c => { const scores = periodReports.map(a => scoreOf(a.rows.filter(r => r.classId === c.id), questions)); const first = scores[0]; const last = scores[scores.length - 1]; const change = first !== null && last !== null && first !== undefined && last !== undefined && scores.length > 1 ? last - first : null; return <tr key={c.id}><td className="mc-strong">{c.name}</td>{scores.map((score, i) => <td key={i}><span className="mc-heat" style={{ background: score === null ? "transparent" : score < 40 ? "#713744" : score < 60 ? "#66512f" : score < 80 ? "#164f60" : "#214d53" }}>{percent(score ?? null)}</span></td>)}<td className={change !== null && change >= 0 ? "mc-positive" : "mc-negative"}>{change === null ? "—" : (change > 0 ? "+" : "") + change.toFixed(1) + " p.p."}</td></tr>; })}</tbody></table></div><p className="mc-footnote">Ganho entre aplicações; retenção anual exige registros longitudinais de matrícula.</p>
